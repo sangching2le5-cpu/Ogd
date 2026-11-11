@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English for Secretaries – Vocabulary Flashcards (Units 9–16)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fc;
+        }
+        .perspective-1000 {
+            perspective: 1000px;
+        }
+        .transform-style-3d {
+            transform-style: preserve-3d;
+        }
+        .backface-hidden {
+            backface-visibility: hidden;
+        }
+        .rotate-y-180 {
+            transform: rotateY(180deg);
+        }
+        /* Custom scrollbar for clean UI */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="h-full flex flex-col text-slate-800 bg-[#f8fafc]">
+
+    <!-- Header -->
+    <header class="bg-white border-b border-sky-100 shadow-sm sticky top-0 z-30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-col md:flex-row justify-between items-center gap-3">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-600 to-sky-400 flex items-center justify-center text-white font-bold shadow-md shadow-sky-200">
+                    ES
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold text-slate-900 tracking-tight">English for Secretaries</h1>
+                    <p class="text-xs text-sky-600 font-medium">Vocabulary Mastery (Units 9–16)</p>
+                </div>
+            </div>
+
+            <!-- Audio & Settings Control Bar -->
+            <div class="flex flex-wrap items-center gap-3 text-xs">
+                <div class="flex items-center bg-sky-50 px-3 py-1.5 rounded-lg border border-sky-100">
+                    <span class="font-medium text-sky-800 mr-2">Voice (en-GB):</span>
+                    <select id="voiceSelect" class="bg-white border border-sky-200 rounded px-2 py-1 text-slate-700 focus:outline-none focus:ring-1 focus:ring-sky-500 max-w-[150px] sm:max-w-[200px]">
+                        <option value="">Detecting British voices...</option>
+                    </select>
+                </div>
+
+                <div class="flex items-center bg-sky-50 px-3 py-1.5 rounded-lg border border-sky-100">
+                    <label for="speedRange" class="font-medium text-sky-800 mr-2">Speed: <span id="speedVal" class="font-bold">0.9x</span></label>
+                    <input type="range" id="speedRange" min="0.75" max="1.1" step="0.05" value="0.9" class="w-20 accent-sky-600 cursor-pointer">
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="bg-slate-50 border-t border-slate-200 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto flex space-x-1 sm:space-x-4 overflow-x-auto py-2 no-scrollbar">
+                <button onclick="switchTab('dashboard')" id="nav-dashboard" class="nav-tab px-3 py-1.5 rounded-lg font-medium text-xs sm:text-sm transition-colors whitespace-nowrap bg-sky-600 text-white shadow-sm">
+                    📊 Dashboard
+                </button>
+                <button onclick="switchTab('flashcards')" id="nav-flashcards" class="nav-tab px-3 py-1.5 rounded-lg font-medium text-xs sm:text-sm transition-colors whitespace-nowrap text-slate-600 hover:bg-slate-200/60">
+                    🗂️ Flashcards
+                </button>
+                <button onclick="switchTab('quiz-listening')" id="nav-quiz-listening" class="nav-tab px-3 py-1.5 rounded-lg font-medium text-xs sm:text-sm transition-colors whitespace-nowrap text-slate-600 hover:bg-slate-200/60">
+                    🎧 Listening Quiz
+                </button>
+                <button onclick="switchTab('quiz-recognition')" id="nav-quiz-recognition" class="nav-tab px-3 py-1.5 rounded-lg font-medium text-xs sm:text-sm transition-colors whitespace-nowrap text-slate-600 hover:bg-slate-200/60">
+                    🔤 Meaning Quiz
+                </button>
+                <button onclick="switchTab('quiz-definition')" id="nav-quiz-definition" class="nav-tab px-3 py-1.5 rounded-lg font-medium text-xs sm:text-sm transition-colors whitespace-nowrap text-slate-600 hover:bg-slate-200/60">
+                    📖 Definition Quiz
+                </button>
+                <button onclick="switchTab('review-mistakes')" id="nav-review-mistakes" class="nav-tab px-3 py-1.5 rounded-lg font-medium text-xs sm:text-sm transition-colors whitespace-nowrap text-slate-600 hover:bg-slate-200/60">
+                    ⚠️ Review Mistakes (<span id="mistakeCountBadge">0</span>)
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8 overflow-y-auto">
+
+        <!-- 1. DASHBOARD VIEW -->
+        <section id="view-dashboard" class="view-section space-y-6">
+            <div class="bg-gradient-to-r from-sky-600 to-cyan-700 rounded-2xl p-6 sm:p-8 text-white shadow-xl shadow-sky-900/10">
+                <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">Welcome to Secretary Vocabulary Hub</h2>
+                <p class="mt-2 text-sky-100 max-w-2xl text-sm sm:text-base">
+                    Master essential business terminology across Units 9 through 16 with British English pronunciation, interactive flashcards, and quizzes.
+                </p>
+                <div class="mt-6 flex flex-wrap gap-3">
+                    <button onclick="switchTab('flashcards')" class="bg-white text-sky-700 font-semibold px-5 py-2.5 rounded-xl shadow hover:bg-sky-50 transition transform active:scale-95 text-sm">
+                        Start Flashcards 🚀
+                    </button>
+                    <button onclick="switchTab('quiz-listening')" class="bg-sky-500/80 border border-sky-400 text-white font-semibold px-5 py-2.5 rounded-xl shadow hover:bg-sky-500 transition transform active:scale-95 text-sm">
+                        Take a Quiz 🎯
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm flex flex-col justify-between">
+                    <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Total Vocabulary</span>
+                    <div class="flex items-baseline justify-between mt-2">
+                        <span id="stat-total" class="text-3xl font-extrabold text-slate-800">95</span>
+                        <span class="text-xs text-sky-600 font-medium bg-sky-50 px-2 py-0.5 rounded">8 Units</span>
+                    </div>
+                </div>
+                <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm flex flex-col justify-between">
+                    <span class="text-xs font-semibold text-emerald-500 uppercase tracking-wider">Known Words</span>
+                    <div class="flex items-baseline justify-between mt-2">
+                        <span id="stat-known" class="text-3xl font-extrabold text-emerald-600">0</span>
+                        <span id="stat-known-pct" class="text-xs text-emerald-600 font-medium bg-emerald-50 px-2 py-0.5 rounded">0%</span>
+                    </div>
+                </div>
+                <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm flex flex-col justify-between">
+                    <span class="text-xs font-semibold text-amber-500 uppercase tracking-wider">Need Practice</span>
+                    <div class="flex items-baseline justify-between mt-2">
+                        <span id="stat-practice" class="text-3xl font-extrabold text-amber-600">0</span>
+                        <span id="stat-practice-pct" class="text-xs text-amber-600 font-medium bg-amber-50 px-2 py-0.5 rounded">0%</span>
+                    </div>
+                </div>
+                <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm flex flex-col justify-between">
+                    <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Unreviewed</span>
+                    <div class="flex items-baseline justify-between mt-2">
+                        <span id="stat-unreviewed" class="text-3xl font-extrabold text-slate-600">95</span>
+                        <span class="text-xs text-slate-500 font-medium bg-slate-100 px-2 py-0.5 rounded">100%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Overall Progress Bar -->
+            <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm space-y-3">
+                <div class="flex justify-between items-center">
+                    <h3 class="font-bold text-slate-800">Overall Mastery Progress</h3>
+                    <span id="overall-progress-text" class="text-sm font-bold text-sky-600">0% Completed</span>
+                </div>
+                <div class="w-full bg-slate-100 h-3 rounded-full overflow-hidden">
+                    <div id="overall-progress-bar" class="bg-sky-600 h-full rounded-full transition-all duration-500" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <!-- Unit Breakdown Cards -->
+            <div class="space-y-4">
+                <h3 class="font-bold text-slate-800 text-lg">Units Overview</h3>
+                <div id="unit-breakdown-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. FLASHCARDS VIEW -->
+        <section id="view-flashcards" class="view-section hidden space-y-6">
+            <!-- Controls & Filters -->
+            <div class="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm flex flex-col lg:flex-row justify-between items-center gap-4">
+                <div class="flex flex-wrap items-center gap-3 w-full lg:w-auto">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-500 mb-1">Select Unit</label>
+                        <select id="fc-unit-select" onchange="filterFlashcards()" class="bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-500">
+                            <option value="all">All Units (9–16)</option>
+                            <option value="9">Unit 9: Business Letters</option>
+                            <option value="10">Unit 10: Graphs and Charts</option>
+                            <option value="11">Unit 11: Writing Invitations</option>
+                            <option value="12">Unit 12: Business Communication</option>
+                            <option value="13">Unit 13: Meetings</option>
+                            <option value="14">Unit 14: Conference Equipment</option>
+                            <option value="15">Unit 15: Company Activities</option>
+                            <option value="16">Unit 16: Administrative Assistant</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-500 mb-1">Filter Status</label>
+                        <select id="fc-status-select" onchange="filterFlashcards()" class="bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-500">
+                            <option value="all">All Words in Unit</option>
+                            <option value="unreviewed">Unreviewed</option>
+                            <option value="practice">Need Practice</option>
+                            <option value="known">Known</option>
+                        </select>
+                    </div>
+                    <div class="flex-1 min-w-[200px]">
+                        <label class="block text-xs font-semibold text-slate-500 mb-1">Search Term</label>
+                        <input type="text" id="fc-search" oninput="filterFlashcards()" placeholder="Search English or Vietnamese..." class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-500">
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-2 w-full lg:w-auto justify-end">
+                    <button onclick="shuffleFlashcards()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl text-sm transition flex items-center gap-1.5">
+                        🔀 Shuffle
+                    </button>
+                    <button onclick="restartUnit()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl text-sm transition flex items-center gap-1.5">
+                        🔄 Reset
+                    </button>
+                </div>
+            </div>
+
+            <!-- Flashcard Display Area -->
+            <div class="flex flex-col items-center justify-center py-4">
+                <div class="w-full max-w-2xl">
+                    <!-- Progress Counter & Unit Badge -->
+                    <div class="flex justify-between items-center mb-3 px-2">
+                        <span id="fc-unit-badge" class="text-xs font-bold uppercase tracking-wider text-sky-600 bg-sky-50 px-3 py-1 rounded-full border border-sky-100">Unit 9</span>
+                        <span id="fc-counter" class="text-sm font-semibold text-slate-500">Card 1 of 12</span>
+                    </div>
+
+                    <!-- Card Wrapper -->
+                    <div id="flashcard" onclick="flipCard()" class="relative w-full h-[400px] sm:h-[380px] cursor-pointer perspective-1000 transition-transform duration-300">
+                        <div id="flashcard-inner" class="relative w-full h-full duration-500 transform-style-3d shadow-xl rounded-3xl bg-white border border-slate-100">
+                            
+                            <!-- FRONT OF CARD -->
+                            <div class="absolute inset-0 w-full h-full backface-hidden bg-gradient-to-br from-white via-[#fcfbf9] to-sky-50/40 p-8 flex flex-col justify-between rounded-3xl">
+                                <div class="flex justify-between items-center">
+                                    <span id="fc-front-pos" class="text-xs font-bold uppercase tracking-wider text-sky-700 bg-sky-100/70 px-3 py-1 rounded-full">Noun</span>
+                                    <button onclick="event.stopPropagation(); speakVocabulary();" class="p-3 bg-sky-600 hover:bg-sky-700 text-white rounded-2xl shadow-md transition flex items-center gap-2 text-sm font-semibold" title="Listen to pronunciation">
+                                        🔊 Listen Word
+                                    </button>
+                                </div>
+                                <div class="text-center my-auto space-y-3">
+                                    <h2 id="fc-front-word" class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">Sender</h2>
+                                    <p id="fc-front-ipa" class="text-lg font-mono text-sky-600 font-medium">/ˈsen.dər/</p>
+                                </div>
+                                <div class="text-center text-xs font-medium text-slate-400">
+                                    Click or tap card to flip ↻ (or swipe left/right)
+                                </div>
+                            </div>
+
+                            <!-- BACK OF CARD -->
+                            <div class="absolute inset-0 w-full h-full backface-hidden rotate-y-180 bg-gradient-to-br from-slate-900 via-slate-800 to-sky-950 p-8 flex flex-col justify-between rounded-3xl text-white">
+                                <div class="flex justify-between items-center">
+                                    <span id="fc-back-pos" class="text-xs font-bold uppercase tracking-wider text-amber-300 bg-amber-400/20 px-3 py-1 rounded-full border border-amber-400/30">Meaning & Example</span>
+                                    <button onclick="event.stopPropagation(); speakExample();" class="p-2.5 bg-sky-500 hover:bg-sky-400 text-slate-950 rounded-2xl shadow-md transition flex items-center gap-2 text-xs font-bold" title="Listen to example sentence">
+                                        🔊 Listen Example
+                                    </button>
+                                </div>
+                                <div class="my-auto space-y-4">
+                                    <div>
+                                        <p class="text-xs text-sky-300 uppercase tracking-wider font-semibold">Vietnamese Meaning</p>
+                                        <h3 id="fc-back-meaning" class="text-xl sm:text-2xl font-bold text-amber-200 mt-0.5">người gửi</h3>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs text-sky-300 uppercase tracking-wider font-semibold">English Definition</p>
+                                        <p id="fc-back-definition" class="text-sm sm:text-base text-slate-200 mt-0.5">A person who sends something to another person.</p>
+                                    </div>
+                                    <div class="bg-white/10 p-3.5 rounded-xl border border-white/10 backdrop-blur-sm">
+                                        <p class="text-xs text-sky-200 font-medium">Example:</p>
+                                        <p id="fc-back-example" class="text-xs sm:text-sm italic text-white mt-1">"The sender's name and address are printed at the top left."</p>
+                                        <p id="fc-back-example-vi" class="text-xs text-amber-200/90 mt-1">Tên và địa chỉ của người gửi được in ở góc trên bên trái.</p>
+                                    </div>
+                                </div>
+                                <div class="text-center text-xs font-medium text-slate-400">
+                                    Click card to flip back ↺
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Navigation & Status Buttons -->
+                    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mt-6 px-2">
+                        <button onclick="prevCard()" class="w-full sm:w-auto px-6 py-3 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 font-bold rounded-2xl shadow-sm transition flex items-center justify-center gap-2">
+                            ← Previous Card
+                        </button>
+
+                        <div class="flex items-center gap-3 w-full sm:w-auto justify-center">
+                            <button onclick="markStatus('practice')" id="btn-practice" class="flex-1 sm:flex-initial px-5 py-3 bg-amber-50 hover:bg-amber-100 text-amber-700 border border-amber-200 font-bold rounded-2xl transition shadow-sm text-sm flex items-center justify-center gap-1.5">
+                                ⚠️ Need Practice
+                            </button>
+                            <button onclick="markStatus('known')" id="btn-known" class="flex-1 sm:flex-initial px-5 py-3 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 font-bold rounded-2xl transition shadow-sm text-sm flex items-center justify-center gap-1.5">
+                                ✅ Mark as Known
+                            </button>
+                        </div>
+
+                        <button onclick="nextCard()" class="w-full sm:w-auto px-6 py-3 bg-sky-600 hover:bg-sky-700 text-white font-bold rounded-2xl shadow-md transition flex items-center justify-center gap-2">
+                            Next Card →
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. LISTENING QUIZ VIEW -->
+        <section id="view-quiz-listening" class="view-section hidden space-y-6 max-w-2xl mx-auto">
+            <div class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-100 shadow-sm space-y-6">
+                <div class="flex justify-between items-center border-b border-slate-100 pb-4">
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-900">🎧 Listening Practice Quiz</h2>
+                        <p class="text-xs text-slate-500 mt-0.5">Listen to the British audio pronunciation and select the correct vocabulary.</p>
+                    </div>
+                    <span id="lq-progress" class="text-xs font-bold text-sky-600 bg-sky-50 px-3 py-1.5 rounded-xl border border-sky-100">Question 1 / 10</span>
+                </div>
+
+                <div class="text-center py-6 bg-sky-50/50 rounded-2xl border border-sky-100/60 space-y-4">
+                    <p class="text-xs uppercase tracking-wider font-bold text-sky-800">Play Audio Pronunciation</p>
+                    <button onclick="playListeningQuizAudio()" class="mx-auto w-16 h-16 bg-sky-600 hover:bg-sky-700 text-white rounded-full shadow-lg flex items-center justify-center text-2xl transition transform active:scale-95">
+                        🔊
+                    </button>
+                    <p class="text-xs text-slate-500 italic">Click speaker to listen again</p>
+                </div>
+
+                <div id="lq-options" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <!-- Populated by JS -->
+                </div>
+
+                <div id="lq-feedback" class="hidden p-4 rounded-2xl text-center font-semibold text-sm"></div>
+
+                <div class="flex justify-end pt-2">
+                    <button id="lq-next-btn" onclick="nextListeningQuizQuestion()" class="hidden w-full sm:w-auto px-6 py-3 bg-sky-600 hover:bg-sky-700 text-white font-bold rounded-2xl shadow transition">
+                        Next Question →
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. VOCABULARY RECOGNITION QUIZ VIEW -->
+        <section id="view-quiz-recognition" class="view-section hidden space-y-6 max-w-2xl mx-auto">
+            <div class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-100 shadow-sm space-y-6">
+                <div class="flex justify-between items-center border-b border-slate-100 pb-4">
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-900">🔤 Vocabulary Recognition Quiz</h2>
+                        <p class="text-xs text-slate-500 mt-0.5">Read the English term and choose the correct Vietnamese meaning.</p>
+                    </div>
+                    <span id="rq-progress" class="text-xs font-bold text-sky-600 bg-sky-50 px-3 py-1.5 rounded-xl border border-sky-100">Question 1 / 10</span>
+                </div>
+
+                <div class="text-center py-6 bg-slate-50 rounded-2xl border border-slate-100 space-y-2">
+                    <span id="rq-pos" class="text-xs font-bold uppercase tracking-wider text-sky-600 bg-sky-50 px-2.5 py-1 rounded">Noun</span>
+                    <h3 id="rq-word" class="text-3xl font-extrabold text-slate-900">Sender</h3>
+                    <p id="rq-ipa" class="text-sm font-mono text-slate-500">/ˈsen.dər/</p>
+                </div>
+
+                <div id="rq-options" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <!-- Populated by JS -->
+                </div>
+
+                <div id="rq-feedback" class="hidden p-4 rounded-2xl text-center font-semibold text-sm"></div>
+
+                <div class="flex justify-end pt-2">
+                    <button id="rq-next-btn" onclick="nextRecognitionQuizQuestion()" class="hidden w-full sm:w-auto px-6 py-3 bg-sky-600 hover:bg-sky-700 text-white font-bold rounded-2xl shadow transition">
+                        Next Question →
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. DEFINITION MATCHING QUIZ VIEW -->
+        <section id="view-quiz-definition" class="view-section hidden space-y-6 max-w-2xl mx-auto">
+            <div class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-100 shadow-sm space-y-6">
+                <div class="flex justify-between items-center border-b border-slate-100 pb-4">
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-900">📖 Definition Matching Quiz</h2>
+                        <p class="text-xs text-slate-500 mt-0.5">Read the definition and select the corresponding vocabulary.</p>
+                    </div>
+                    <span id="dq-progress" class="text-xs font-bold text-sky-600 bg-sky-50 px-3 py-1.5 rounded-xl border border-sky-100">Question 1 / 10</span>
+                </div>
+
+                <div class="p-6 bg-amber-50/40 rounded-2xl border border-amber-100/60 space-y-2">
+                    <p class="text-xs uppercase tracking-wider font-bold text-amber-800">English Definition</p>
+                    <p id="dq-definition" class="text-base sm:text-lg font-medium text-slate-800 leading-relaxed">
+                        A person who sends something to another person.
+                    </p>
+                </div>
+
+                <div id="dq-options" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <!-- Populated by JS -->
+                </div>
+
+                <div id="dq-feedback" class="hidden p-4 rounded-2xl text-center font-semibold text-sm"></div>
+
+                <div class="flex justify-end pt-2">
+                    <button id="dq-next-btn" onclick="nextDefinitionQuizQuestion()" class="hidden w-full sm:w-auto px-6 py-3 bg-sky-600 hover:bg-sky-700 text-white font-bold rounded-2xl shadow transition">
+                        Next Question →
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. REVIEW MISTAKES VIEW -->
+        <section id="view-review-mistakes" class="view-section hidden space-y-6">
+            <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm flex flex-col sm:flex-row justify-between items-center gap-4">
+                <div>
+                    <h2 class="text-xl font-bold text-slate-900">⚠️ Mistake Review Center</h2>
+                    <p class="text-xs text-slate-500 mt-0.5">Review vocabulary items that were answered incorrectly in previous quiz sessions.</p>
+                </div>
+                <button onclick="clearMistakes()" id="clear-mistakes-btn" class="px-4 py-2 bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 font-semibold rounded-xl text-sm transition">
+                    🗑️ Clear Mistake History
+                </button>
+            </div>
+
+            <div id="mistakes-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Populated by JS -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-4 px-4 sm:px-8 text-center text-xs text-slate-500">
+        English for Secretaries (Units 9–16) • Designed with British English en-GB Speech Synthesis & Pastel Theme
+    </footer>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // ==========================================
+        // VOCABULARY DATASET (UNITS 9–16)
+        // ==========================================
+        const vocabularyData = [
+            // UNIT 9: BUSINESS LETTERS
+            { id: 1, unit: 9, word: "Sender", pos: "N", ipa: "/ˈsen.dər/", meaning: "người gửi", definition: "A person who sends something to another person.", example: "The sender's name and address are printed at the top left of the letter.", exampleVi: "Tên và địa chỉ của người gửi được in ở góc trên bên trái của bức thư." },
+            { id: 2, unit: 9, word: "Recipient", pos: "N", ipa: "/rɪˈsɪp.i.ənt/", meaning: "người nhận", definition: "A person who receives something, such as a letter or package.", example: "Please ensure the recipient's name is spelled correctly on the envelope.", exampleVi: "Hãy đảm bảo tên người nhận được viết đúng chính tả trên phong bì." },
+            { id: 3, unit: 9, word: "Salutation", pos: "N", ipa: "/ˌsæl.jʊˈteɪ.ʃən/", meaning: "lời chào đầu thư", definition: "A greeting used at the beginning of a letter.", example: "\"Dear Mr. Davis\" is a standard salutation for a formal business letter.", exampleVi: "\"Dear Mr. Davis\" là lời chào tiêu chuẩn cho một bức thư kinh doanh trang trọng." },
+            { id: 4, unit: 9, word: "Body", pos: "N", ipa: "/ˈbɒd.i/", meaning: "phần nội dung chính", definition: "The main part of a letter or document.", example: "The body of the letter clearly explains our new pricing policy.", exampleVi: "Phần nội dung chính của bức thư giải thích rõ ràng chính sách giá mới của chúng tôi." },
+            { id: 5, unit: 9, word: "Keep it brief", pos: "V phrase", ipa: "/kiːp ɪt briːf/", meaning: "giữ nội dung ngắn gọn", definition: "To make something short and concise.", example: "When writing emails to clients, keep it brief and to the point.", exampleVi: "Khi viết email cho khách hàng, hãy giữ nội dung ngắn gọn và đúng trọng tâm." },
+            { id: 6, unit: 9, word: "Pertinent", pos: "Adj", ipa: "/ˈpɜː.tɪ.nənt/", meaning: "có liên quan, thích hợp", definition: "Relevant to the subject being discussed.", example: "Attach only documents that are pertinent to the contract discussion.", exampleVi: "Chỉ đính kèm các tài liệu có liên quan đến cuộc thảo luận hợp đồng." },
+            { id: 7, unit: 9, word: "Closing", pos: "N", ipa: "/ˈkləʊ.zɪŋ/", meaning: "lời kết thư", definition: "The words used to end a letter.", example: "A professional closing leaves a positive final impression on the reader.", exampleVi: "Lời kết chuyên nghiệp tạo ấn tượng tốt đẹp cuối cùng cho người đọc." },
+            { id: 8, unit: 9, word: "Sincerely yours", pos: "Formal closing", ipa: "/sɪnˈsɪə.li jɔːz/", meaning: "trân trọng, chân thành", definition: "A formal expression used to end a letter.", example: "Sign off the formal email with \"Sincerely yours\" followed by your signature.", exampleVi: "Ký kết bức thư trang trọng với câu \"Sincerely yours\" kèm theo chữ ký của bạn." },
+            { id: 9, unit: 9, word: "Respectfully yours", pos: "Formal closing", ipa: "/rɪˈspekt.fəl.i jɔːz/", meaning: "kính trọng, trân trọng", definition: "A formal closing that expresses respect.", example: "Use \"Respectfully yours\" when writing to senior executives.", exampleVi: "Sử dụng \"Respectfully yours\" khi viết thư cho các giám đốc cấp cao." },
+            { id: 10, unit: 9, word: "Signature", pos: "N", ipa: "/ˈsɪɡ.nə.tʃər/", meaning: "chữ ký", definition: "A person’s name written by hand on a document.", example: "Please place your handwritten signature at the bottom of the agreement.", exampleVi: "Vui lòng đặt chữ ký viết tay của bạn ở cuối thỏa thuận." },
+            { id: 11, unit: 9, word: "Attach", pos: "V", ipa: "/əˈtætʃ/", meaning: "đính kèm", definition: "To include a document or file with a letter or email.", example: "Don't forget to attach the monthly sales report to your email.", exampleVi: "Đừng quên đính kèm báo cáo doanh số hàng tháng vào email của bạn." },
+            { id: 12, unit: 9, word: "Purchase order", pos: "N phrase", ipa: "/ˈpɜː.tʃəs ˌɔː.dər/", meaning: "đơn đặt hàng", definition: "A document sent by a buyer to a seller to request goods or services.", example: "The procurement department sent a purchase order for 50 new chairs.", exampleVi: "Bộ phận mua sắm đã gửi đơn đặt hàng cho 50 chiếc ghế mới." },
+
+            // UNIT 10: GRAPHS AND CHARTS
+            { id: 13, unit: 10, word: "Line graph", pos: "N", ipa: "/ˈlaɪn ɡrɑːf/", meaning: "biểu đồ đường", definition: "A graph that uses lines to show changes in figures over time.", example: "The line graph illustrates the company's revenue growth over five years.", exampleVi: "Biểu đồ đường minh họa sự tăng trưởng doanh thu trong năm năm." },
+            { id: 14, unit: 10, word: "Demonstrate", pos: "V", ipa: "/ˈdem.ən.streɪt/", meaning: "minh họa, chứng minh", definition: "To show or explain how something works or happens.", example: "The chart demonstrates a sharp increase in online sales last quarter.", exampleVi: "Biểu đồ chứng minh sự gia tăng mạnh mẽ trong doanh số bán hàng trực tuyến." },
+            { id: 15, unit: 10, word: "Increase", pos: "V, N", ipa: "/ɪnˈkriːs/ (V), /ˈɪŋ.kriːs/ (N)", meaning: "tăng, sự gia tăng", definition: "To become greater in number, amount or size.", example: "We expect to see an increase in productivity after upgrading software.", exampleVi: "Chúng tôi kỳ vọng sẽ thấy sự gia tăng năng suất sau khi nâng cấp phần mềm." },
+            { id: 16, unit: 10, word: "Decrease", pos: "V, N", ipa: "/dɪˈkriːs/ (V), /ˈdiː.kriːs/ (N)", meaning: "giảm, sự sụt giảm", definition: "To become smaller in number, amount or size.", example: "There was a slight decrease in operating costs this month.", exampleVi: "Có một sự sụt giảm nhẹ về chi phí vận hành trong tháng này." },
+            { id: 17, unit: 10, word: "Figure", pos: "N", ipa: "/ˈfɪɡ.ər/", meaning: "con số, số liệu", definition: "A number or amount shown in statistics.", example: "Check the latest financial figures before preparing the annual report.", exampleVi: "Kiểm tra các số liệu tài chính mới nhất trước khi chuẩn bị báo cáo thường niên." },
+            { id: 18, unit: 10, word: "Bar graph", pos: "N", ipa: "/ˈbɑː ɡrɑːf/", meaning: "biểu đồ cột", definition: "A graph that uses rectangular bars to compare different amounts.", example: "Use a bar graph to compare quarterly sales across regional branches.", exampleVi: "Sử dụng biểu đồ cột để so sánh doanh số hàng quý giữa các chi nhánh." },
+            { id: 19, unit: 10, word: "Make a comparison", pos: "V phrase", ipa: "/meɪk ə kəmˈpær.ɪ.sən/", meaning: "thực hiện phép so sánh", definition: "To examine similarities and differences between things.", example: "The manager asked me to make a comparison between two suppliers.", exampleVi: "Quản lý yêu cầu tôi thực hiện phép so sánh giữa hai nhà cung cấp." },
+            { id: 20, unit: 10, word: "Measure up", pos: "Phrasal V", ipa: "/ˈmeʒ.ər ʌp/", meaning: "đạt tiêu chuẩn", definition: "To be good enough or meet a particular standard.", example: "Unfortunately, the new prototype did not measure up to our standards.", exampleVi: "Thật không may, nguyên mẫu mới đã không đạt tiêu chuẩn chất lượng." },
+            { id: 21, unit: 10, word: "Competitor", pos: "N", ipa: "/kəmˈpet.ɪ.tər/", meaning: "đối thủ cạnh tranh", definition: "A person or company competing against another.", example: "We must analyze our main competitor's pricing strategy.", exampleVi: "Chúng ta phải phân tích chiến lược giá của đối thủ cạnh tranh chính." },
+            { id: 22, unit: 10, word: "Pie chart", pos: "N", ipa: "/ˈpaɪ tʃɑːt/", meaning: "biểu đồ tròn", definition: "A circular chart divided into sections to represent proportions.", example: "The pie chart shows the breakdown of our annual marketing budget.", exampleVi: "Biểu đồ tròn cho thấy sự phân bổ ngân sách tiếp thị hàng năm." },
+            { id: 23, unit: 10, word: "The big picture", pos: "N phrase", ipa: "/ðə ˌbɪɡ ˈpɪk.tʃər/", meaning: "bức tranh tổng thể", definition: "The overall view of a situation rather than individual details.", example: "Let's look at the big picture before finalizing the project plan.", exampleVi: "Hãy nhìn vào bức tranh tổng thể trước khi hoàn thiện kế hoạch." },
+
+            // UNIT 11: WRITING INVITATIONS
+            { id: 24, unit: 11, word: "Social event", pos: "N", ipa: "/ˈsəʊ.ʃəl ɪˈvent/", meaning: "sự kiện xã hội", definition: "An occasion when people gather for entertainment or social activities.", example: "The annual company dinner is the biggest social event of the year.", exampleVi: "Bữa tiệc thường niên của công ty là sự kiện xã hội lớn nhất trong năm." },
+            { id: 25, unit: 11, word: "Invitation", pos: "N", ipa: "/ˌɪn.vɪˈteɪ.ʃən/", meaning: "lời mời, thiệp mời", definition: "A request asking someone to attend an event.", example: "Please send out formal invitations to all key clients by Friday.", exampleVi: "Vui lòng gửi thiệp mời trang trọng đến tất cả khách hàng chính." },
+            { id: 26, unit: 11, word: "Host", pos: "N", ipa: "/ˈhəʊst/", meaning: "chủ tiệc, người tổ chức", definition: "A person who organizes an event and welcomes the guests.", example: "As the host of the conference, our CEO will deliver opening remarks.", exampleVi: "Với tư cách là chủ nhà, CEO của chúng ta sẽ phát biểu khai mạc." },
+            { id: 27, unit: 11, word: "Product launch", pos: "N phrase", ipa: "/ˈprɒd.ʌkt lɔːntʃ/", meaning: "sự kiện ra mắt sản phẩm", definition: "An event organized to introduce a new product to the public.", example: "We are hosting a grand product launch for our new smartphone series.", exampleVi: "Chúng tôi đang tổ chức sự kiện ra mắt sản phẩm cho dòng điện thoại mới." },
+            { id: 28, unit: 11, word: "Cocktail party", pos: "N", ipa: "/ˈkɒk.teɪl ˌpɑː.ti/", meaning: "tiệc cocktail", definition: "A formal social gathering where drinks and light snacks are served.", example: "Networking will continue during the evening cocktail party.", exampleVi: "Kết nối mạng lưới sẽ tiếp tục trong buổi tiệc cocktail tối." },
+            { id: 29, unit: 11, word: "Attire", pos: "N", ipa: "/əˈtaɪər/", meaning: "trang phục", definition: "Clothes worn for a particular occasion.", example: "The invitation specifies that formal business attire is required.", exampleVi: "Thiệp mời quy định rằng trang phục kinh doanh trang trọng là bắt buộc." },
+            { id: 30, unit: 11, word: "RSVP", pos: "ABBR", ipa: "/ˌɑːr.es.viːˈpiː/", meaning: "vui lòng phản hồi", definition: "Please reply, used to ask guests to confirm attendance.", example: "Please complete and return the RSVP card by October 10th.", exampleVi: "Vui lòng điền và gửi lại thẻ RSVP trước ngày 10 tháng 10." },
+            { id: 31, unit: 11, word: "Accept", pos: "V", ipa: "/əkˈsept/", meaning: "chấp nhận", definition: "To agree to an invitation or offer.", example: "We are delighted to accept your invitation to the annual banquet.", exampleVi: "Chúng tôi rất vui mừng được chấp nhận lời mời dự tiệc." },
+            { id: 32, unit: 11, word: "Decline", pos: "V", ipa: "/dɪˈklaɪn/", meaning: "từ chối", definition: "To politely refuse an invitation or offer.", example: "Due to a prior engagement, I must politely decline the invitation.", exampleVi: "Do có lịch hẹn trước, tôi buộc phải từ chối lịch sự lời mời." },
+            { id: 33, unit: 11, word: "Reply by date", pos: "N phrase", ipa: "/rɪˈplaɪ baɪ deɪt/", meaning: "hạn phản hồi", definition: "The deadline by which someone must respond.", example: "The reply by date for the workshop invitation is next Monday.", exampleVi: "Hạn phản hồi cho lời mời hội thảo là vào thứ Hai tới." },
+
+            // UNIT 12: BUSINESS COMMUNICATION
+            { id: 34, unit: 12, word: "Social networking site", pos: "N", ipa: "/ˈsəʊ.ʃəl ˈnet.wɜː.kɪŋ saɪt/", meaning: "trang mạng xã hội", definition: "A website that allows users to connect and share information.", example: "Our marketing team promotes company events on social networking sites.", exampleVi: "Đội ngũ tiếp thị quảng bá sự kiện trên các trang mạng xã hội." },
+            { id: 35, unit: 12, word: "Get fired", pos: "V phrase", ipa: "/ɡet ˈfaɪəd/", meaning: "bị sa thải", definition: "To lose your job because your employer decides to dismiss you.", example: "Breaching confidentiality can cause an employee to get fired immediately.", exampleVi: "Vi phạm tính bảo mật có thể khiến nhân viên bị sa thải ngay lập tức." },
+            { id: 36, unit: 12, word: "Internet", pos: "N", ipa: "/ˈɪn.tə.net/", meaning: "mạng Internet", definition: "A global network connecting computers and electronic devices.", example: "A stable internet connection is essential for remote work meetings.", exampleVi: "Kết nối internet ổn định là điều cần thiết cho họp trực tuyến." },
+            { id: 37, unit: 12, word: "Cell phone", pos: "N", ipa: "/ˈsel fəʊn/", meaning: "điện thoại di động", definition: "A portable device used to make and receive telephone calls.", example: "Please turn your cell phone to silent mode during the conference.", exampleVi: "Vui lòng chuyển điện thoại di động sang chế độ im lặng." },
+            { id: 38, unit: 12, word: "Video conferencing", pos: "N", ipa: "/ˈvɪd.i.əʊ ˈkɒn.fər.ən.sɪŋ/", meaning: "hội nghị truyền hình", definition: "A meeting in which people communicate through live video and audio.", example: "We hold weekly video conferencing sessions with overseas branches.", exampleVi: "Chúng tôi tổ chức họp hội nghị truyền hình hàng tuần." },
+            { id: 39, unit: 12, word: "Social media", pos: "N", ipa: "/ˈsəʊ.ʃəl ˈmiː.di.ə/", meaning: "truyền thông xã hội", definition: "Websites and applications allowing users to share content.", example: "Social media campaigns have significantly boosted our brand awareness.", exampleVi: "Các chiến dịch truyền thông xã hội đã thúc đẩy độ nhận diện thương hiệu." },
+            { id: 40, unit: 12, word: "Function", pos: "N", ipa: "/ˈfʌŋk.ʃən/", meaning: "buổi lễ, sự kiện xã hội", definition: "A formal or social event, such as a ceremony or gathering.", example: "All department heads are expected to attend the evening function.", exampleVi: "Tất cả trưởng bộ phận được kỳ vọng tham gia sự kiện buổi tối." },
+            { id: 41, unit: 12, word: "Instant messaging", pos: "N", ipa: "/ˈɪn.stənt ˈmes.ɪ.dʒɪŋ/", meaning: "nhắn tin tức thời", definition: "A system allowing people to exchange messages immediately online.", example: "Our team uses instant messaging for quick daily updates.", exampleVi: "Nhóm sử dụng nhắn tin tức thời để cập nhật nhanh hàng ngày." },
+            { id: 42, unit: 12, word: "Voice mail", pos: "N", ipa: "/ˈvɔɪs.meɪl/", meaning: "thư thoại", definition: "A system that records and stores telephone messages.", example: "I left a voice mail for Mr. Green when he didn't answer his phone.", exampleVi: "Tôi đã để lại thư thoại cho ông Green khi ông ấy không nhấc máy." },
+
+            // UNIT 13: MEETINGS
+            { id: 43, unit: 13, word: "Call to order", pos: "V phrase", ipa: "/kɔːl tə ˈɔː.dər/", meaning: "chính thức khai mạc cuộc họp", definition: "To officially start a meeting.", example: "The chairperson used the gavel to call the board meeting to order.", exampleVi: "Chủ tịch đã dùng búa để khai mạc cuộc họp hội đồng quản trị." },
+            { id: 44, unit: 13, word: "Adjourn", pos: "V", ipa: "/əˈdʒɜːn/", meaning: "kết thúc hoặc hoãn cuộc họp", definition: "To officially end a meeting or suspend it until later.", example: "Let us adjourn the meeting until tomorrow morning at 9 AM.", exampleVi: "Hãy tạm hoãn cuộc họp cho đến 9 giờ sáng mai." },
+            { id: 45, unit: 13, word: "Attend", pos: "V", ipa: "/əˈtend/", meaning: "tham dự", definition: "To be present at an event or meeting.", example: "All team leaders must attend the monthly strategic planning session.", exampleVi: "Tất cả trưởng nhóm phải tham dự buổi lập kế hoạch chiến lược." },
+            { id: 46, unit: 13, word: "Purpose", pos: "N", ipa: "/ˈpɜː.pəs/", meaning: "mục đích", definition: "The reason why something is done or exists.", example: "The main purpose of today's meeting is to discuss budget allocations.", exampleVi: "Mục đích chính của cuộc họp hôm nay là thảo luận phân bổ ngân sách." },
+            { id: 47, unit: 13, word: "Inform", pos: "V", ipa: "/ɪnˈfɔːm/", meaning: "thông báo", definition: "To give someone information about something.", example: "Please inform all staff members about the office closure next Friday.", exampleVi: "Vui lòng thông báo cho tất cả nhân viên về việc đóng cửa văn phòng." },
+            { id: 48, unit: 13, word: "Commence", pos: "V", ipa: "/kəˈmens/", meaning: "bắt đầu, khởi đầu", definition: "To begin or start something.", example: "The training seminar will commence promptly at 8:30 AM.", exampleVi: "Hội thảo đào tạo sẽ bắt đầu đúng lúc 8:30 sáng." },
+            { id: 49, unit: 13, word: "Contribute", pos: "V", ipa: "/kənˈtrɪb.juːt/", meaning: "đóng góp", definition: "To give ideas, opinions or assistance to a group.", example: "We encourage every participant to contribute ideas during the session.", exampleVi: "Chúng tôi khuyến khích mọi người đóng góp ý kiến trong buổi thảo luận." },
+            { id: 50, unit: 13, word: "Courteous", pos: "Adj", ipa: "/ˈkɜː.ti.əs/", meaning: "lịch sự, nhã nhặn", definition: "Polite and respectful towards other people.", example: "Always remain courteous even when disagreeing with a colleague.", exampleVi: "Luôn giữ sự lịch sự ngay cả khi không đồng tình với đồng nghiệp." },
+            { id: 51, unit: 13, word: "Interrupt", pos: "V", ipa: "/ˌɪn.təˈrʌpt/", meaning: "ngắt lời, làm gián đoạn", definition: "To stop someone while they are speaking.", example: "Please let the speaker finish before you interrupt with questions.", exampleVi: "Vui lòng để diễn giả nói xong trước khi bạn ngắt lời." },
+            { id: 52, unit: 13, word: "Chairperson", pos: "N", ipa: "/ˈtʃeəˌpɜː.sən/", meaning: "chủ tọa cuộc họp", definition: "A person who leads and controls a meeting.", example: "The chairperson managed the discussion schedule efficiently.", exampleVi: "Chủ tọa đã quản lý lịch trình thảo luận một cách hiệu quả." },
+            { id: 53, unit: 13, word: "Propose a motion", pos: "V phrase", ipa: "/prəˈpəʊz ə ˈməʊ.ʃən/", meaning: "đề xuất một kiến nghị", definition: "To formally suggest an idea or action for a group to consider.", example: "Mr. Smith decided to propose a motion to increase IT training funds.", exampleVi: "Ông Smith quyết định đề xuất kiến nghị tăng quỹ đào tạo IT." },
+            { id: 54, unit: 13, word: "In advance", pos: "Adv phrase", ipa: "/ɪn ədˈvɑːns/", meaning: "trước, từ trước", definition: "Before a particular time or event.", example: "Please submit your meeting agenda items at least two days in advance.", exampleVi: "Vui lòng nộp các mục chương trình nghị sự trước ít nhất hai ngày." },
+
+            // UNIT 14: CONFERENCE EQUIPMENT
+            { id: 55, unit: 14, word: "Provide", pos: "V", ipa: "/prəˈvaɪd/", meaning: "cung cấp", definition: "To give someone something they need.", example: "The hotel will provide all necessary audio-visual equipment.", exampleVi: "Khách sạn sẽ cung cấp tất cả thiết bị âm thanh hình ảnh cần thiết." },
+            { id: 56, unit: 14, word: "Deliver", pos: "V", ipa: "/dɪˈlɪv.ər/", meaning: "giao, chuyển hàng", definition: "To take goods or items to a particular place.", example: "The supplier promised to deliver the new laptops by Thursday afternoon.", exampleVi: "Nhà cung cấp hứa giao máy tính xách tay trước chiều thứ Năm." },
+            { id: 57, unit: 14, word: "Set up", pos: "Phrasal V", ipa: "/set ʌp/", meaning: "lắp đặt, chuẩn bị", definition: "To arrange equipment so that it is ready to use.", example: "Technical staff arrived early to set up the microphones and projector.", exampleVi: "Nhân viên kỹ thuật đến sớm để lắp đặt micro và máy chiếu." },
+            { id: 58, unit: 14, word: "Equipment", pos: "N", ipa: "/ɪˈkwɪp.mənt/", meaning: "thiết bị", definition: "The tools or machines needed for a particular activity.", example: "Office equipment must be inspected and maintained regularly.", exampleVi: "Thiết bị văn phòng phải được kiểm tra và bảo trì định kỳ." },
+            { id: 59, unit: 14, word: "Flipchart", pos: "N", ipa: "/ˈflɪp.tʃɑːt/", meaning: "bảng giấy lật", definition: "A large pad of paper attached to a stand, used for presentations.", example: "The trainer used a flipchart to write down key brainstorming points.", exampleVi: "Người huấn luyện đã dùng bảng giấy lật để ghi lại các ý chính." },
+            { id: 60, unit: 14, word: "Laptop", pos: "N", ipa: "/ˈlæp.tɒp/", meaning: "máy tính xách tay", definition: "A small portable computer.", example: "Every secretary is provided with a modern laptop for administrative work.", exampleVi: "Mỗi thư ký đều được cung cấp máy tính xách tay hiện đại." },
+            { id: 61, unit: 14, word: "Projector", pos: "N", ipa: "/prəˈdʒek.tər/", meaning: "máy chiếu", definition: "A machine that displays images or videos on a screen.", example: "Please connect your laptop to the conference room projector.", exampleVi: "Vui lòng kết nối máy tính xách tay với máy chiếu phòng họp." },
+            { id: 62, unit: 14, word: "Screen", pos: "N", ipa: "/skriːn/", meaning: "màn hình, màn chiếu", definition: "A flat surface on which images or information are displayed.", example: "Ensure the projection screen is lowered before starting.", exampleVi: "Đảm bảo màn chiếu được hạ xuống trước khi bắt đầu." },
+            { id: 63, unit: 14, word: "Microphone", pos: "N", ipa: "/ˈmaɪ.krə.fəʊn/", meaning: "micro, micrô", definition: "A device used to make sounds louder or record them.", example: "Speak clearly into the microphone so everyone in the auditorium can hear.", exampleVi: "Nói rõ ràng vào micro để mọi người trong hội trường đều nghe thấy." },
+            { id: 64, unit: 14, word: "Auditorium", pos: "N", ipa: "/ˌɔː.dɪˈtɔː.ri.əm/", meaning: "hội trường, giảng đường", definition: "A large room where people gather to watch performances or presentations.", example: "The annual shareholder meeting will be held in the main auditorium.", exampleVi: "Cuộc họp cổ đông thường niên sẽ tổ chức tại hội trường chính." },
+            { id: 65, unit: 14, word: "Portable", pos: "Adj", ipa: "/ˈpɔː.tə.bəl/", meaning: "có thể mang theo, di động", definition: "Easy to carry or move from one place to another.", example: "We need a portable sound system for outdoor company events.", exampleVi: "Chúng ta cần hệ thống âm thanh di động cho sự kiện ngoài trời." },
+            { id: 66, unit: 14, word: "Deluxe", pos: "Adj", ipa: "/dɪˈlʌks/", meaning: "cao cấp, sang trọng", definition: "Of high quality, often more expensive than standard products.", example: "VIP guests were accommodated in the hotel's deluxe suites.", exampleVi: "Các khách mời VIP được sắp xếp ở phòng cao cấp của khách sạn." },
+            { id: 67, unit: 14, word: "Speakers", pos: "N plural", ipa: "/ˈspiː.kəz/", meaning: "loa", definition: "Devices that produce sound from an audio system.", example: "Check the speakers before the webinar to ensure good audio quality.", exampleVi: "Kiểm tra loa trước hội thảo trực tuyến để đảm bảo âm thanh tốt." },
+
+            // UNIT 15: COMPANY ACTIVITIES
+            { id: 68, unit: 15, word: "Founding", pos: "N", ipa: "/ˈfaʊn.dɪŋ/", meaning: "sự thành lập", definition: "The act or occasion of establishing an organisation or company.", example: "We celebrated the 20th anniversary of the company's founding.", exampleVi: "Chúng ta đã kỷ niệm 20 năm ngày thành lập công ty." },
+            { id: 69, unit: 15, word: "Set up", pos: "Phrasal V", ipa: "/set ʌp/", meaning: "thành lập, thiết lập", definition: "To establish or start a business or organisation.", example: "They plan to set up a new branch office in Singapore next year.", exampleVi: "Họ có kế hoạch thành lập chi nhánh mới ở Singapore vào năm tới." },
+            { id: 70, unit: 15, word: "Import", pos: "V", ipa: "/ɪmˈpɔːt/", meaning: "nhập khẩu", definition: "To bring goods or products into a country from abroad.", example: "The firm imports raw materials from certified overseas suppliers.", exampleVi: "Công ty nhập khẩu nguyên liệu thô từ các nhà cung cấp nước ngoài." },
+            { id: 71, unit: 15, word: "Manufacture", pos: "V", ipa: "/ˌmæn.jəˈfæk.tʃər/", meaning: "sản xuất, chế tạo", definition: "To produce goods, usually using machinery.", example: "The factory manufactures eco-friendly office furniture.", exampleVi: "Nhà máy sản xuất nội thất văn phòng thân thiện với môi trường." },
+            { id: 72, unit: 15, word: "Expand", pos: "V", ipa: "/ɪkˈspænd/", meaning: "mở rộng", definition: "To become larger or increase in size, range or business activities.", example: "Our company aims to expand into European markets within two years.", exampleVi: "Công ty đặt mục tiêu mở rộng sang thị trường châu Âu trong 2 năm." },
+            { id: 73, unit: 15, word: "Relocate", pos: "V", ipa: "/ˌriː.ləʊˈkeɪt/", meaning: "di dời, chuyển địa điểm", definition: "To move a business or organisation to a different place.", example: "The headquarters will relocate to a larger business park next month.", exampleVi: "Trụ sở chính sẽ chuyển đến khu công nghiệp lớn hơn vào tháng tới." },
+            { id: 74, unit: 15, word: "Premises", pos: "N plural", ipa: "/ˈprem.ɪ.sɪz/", meaning: "cơ sở, mặt bằng, khuôn viên", definition: "The buildings and land occupied or used by a business.", example: "Smoking is strictly prohibited within company premises.", exampleVi: "Hút thuốc bị cấm nghiêm ngặt trong khuôn viên công ty." },
+            { id: 75, unit: 15, word: "Closure", pos: "N", ipa: "/ˈkləʊ.ʒər/", meaning: "sự đóng cửa", definition: "The act of permanently or temporarily stopping operations.", example: "The sudden closure of the warehouse caused delivery delays.", exampleVi: "Việc đóng cửa đột ngột kho hàng gây chậm trễ giao hàng." },
+            { id: 76, unit: 15, word: "Compete", pos: "V", ipa: "/kəmˈpiːt/", meaning: "cạnh tranh", definition: "To try to be more successful than another person or business.", example: "Smaller businesses must innovate to compete with industry giants.", exampleVi: "Các doanh nghiệp nhỏ phải đổi mới để cạnh tranh với người khổng lồ." },
+            { id: 77, unit: 15, word: "Maintain a foothold", pos: "V phrase", ipa: "/meɪnˈteɪn ə ˈfʊt.həʊld/", meaning: "duy trì vị thế", definition: "To keep an established position in a market or industry.", example: "Excellent customer service helps us maintain a foothold in the market.", exampleVi: "Dịch vụ khách hàng xuất sắc giúp duy trì vị thế trên thị trường." },
+            { id: 78, unit: 15, word: "Diversify", pos: "V", ipa: "/daɪˈvɜː.sɪ.faɪ/", meaning: "đa dạng hóa", definition: "To develop a wider range of products, services or activities.", example: "The board decided to diversify into software development services.", exampleVi: "Hội đồng quản trị quyết định đa dạng hóa sang dịch vụ phần mềm." },
+            { id: 79, unit: 15, word: "Cut back", pos: "Phrasal V", ipa: "/kʌt bæk/", meaning: "cắt giảm", definition: "To reduce the amount of money, time or resources used.", example: "We need to cut back on unnecessary office stationery expenses.", exampleVi: "Chúng ta cần cắt giảm chi phí văn phòng phẩm không cần thiết." },
+            { id: 80, unit: 15, word: "Seek out", pos: "Phrasal V", ipa: "/siːk aʊt/", meaning: "tìm kiếm, tìm ra", definition: "To search for and find someone or something.", example: "The HR manager is seeking out top talent for the administrative team.", exampleVi: "Trưởng phòng Nhân sự đang tìm kiếm nhân tài cho đội ngũ hành chính." },
+            { id: 81, unit: 15, word: "Go from strength to strength", pos: "Idiom", ipa: "/ɡəʊ frəm streŋθ tə streŋθ/", meaning: "ngày càng phát triển", definition: "To become increasingly successful.", example: "Despite market challenges, the company has gone from strength to strength.", exampleVi: "Bất chấp thách thức thị trường, công ty ngày càng phát triển vững mạnh." },
+
+            // UNIT 16: ADMINISTRATIVE ASSISTANT
+            { id: 82, unit: 16, word: "K", pos: "ABBR", ipa: "/keɪ/", meaning: "nghìn", definition: "An abbreviation meaning one thousand, often used for salaries.", example: "The starting salary for the administrative role is 40K p.a.", exampleVi: "Mức lương khởi điểm cho vị trí hành chính là 40 nghìn mỗi năm." },
+            { id: 83, unit: 16, word: "p.a. (per annum)", pos: "ABBR", ipa: "/ˌpɜːr ˈæn.əm/", meaning: "mỗi năm, hằng năm", definition: "An abbreviation meaning each year.", example: "Employees receive performance bonuses at the end of each p.a. cycle.", exampleVi: "Nhân viên nhận thưởng hiệu suất vào cuối mỗi chu kỳ năm." },
+            { id: 84, unit: 16, word: "Approx. (approximately)", pos: "ABBR", ipa: "/əˈprɒk.sɪ.mət.li/", meaning: "xấp xỉ, khoảng", definition: "An abbreviation meaning about or nearly.", example: "Approx. 150 applicants applied for the secretary position.", exampleVi: "Xấp xỉ 150 ứng viên đã nộp đơn cho vị trí thư ký." },
+            { id: 85, unit: 16, word: "Essential", pos: "Adj", ipa: "/ɪˈsen.ʃəl/", meaning: "cần thiết, thiết yếu", definition: "Completely necessary or extremely important.", example: "Good communication skills are essential for an administrative assistant.", exampleVi: "Kỹ năng giao tiếp tốt là điều cần thiết đối với trợ lý hành chính." },
+            { id: 86, unit: 16, word: "w.p.m. (words per minute)", pos: "ABBR", ipa: "/ˌwɜːdz pə ˈmɪn.ɪt/", meaning: "số từ mỗi phút", definition: "An abbreviation used to measure typing speed.", example: "The job advertisement requires a minimum typing speed of 60 w.p.m.", exampleVi: "Quảng cáo việc làm yêu cầu tốc độ gõ tối thiểu 60 từ mỗi phút." },
+            { id: 87, unit: 16, word: "IT (Information Technology)", pos: "ABBR", ipa: "/ˌaɪ ˈtiː/", meaning: "công nghệ thông tin", definition: "An abbreviation referring to computer systems and technology.", example: "Contact the IT department if you encounter software issues.", exampleVi: "Hãy liên hệ với bộ phận công nghệ thông tin nếu gặp sự cố phần mềm." },
+            { id: 88, unit: 16, word: "esp. (especially)", pos: "ABBR", ipa: "/ɪˈspeʃ.əl.i/", meaning: "đặc biệt là", definition: "An abbreviation used to emphasise something important.", example: "Administrative tasks require organization, esp. when managing schedules.", exampleVi: "Công việc hành chính đòi hỏi sự tổ chức, đặc biệt khi quản lý lịch trình." },
+            { id: 89, unit: 16, word: "Desirable", pos: "Adj", ipa: "/dɪˈzaɪə.rə.bəl/", meaning: "đáng mong muốn, có lợi thế", definition: "Wanted or considered useful, but not absolutely necessary.", example: "Fluency in a second foreign language is desirable for this role.", exampleVi: "Sự thành thạo ngoại ngữ thứ hai là một lợi thế cho vị trí này." },
+            { id: 90, unit: 16, word: "Yrs", pos: "ABBR", ipa: "/jɪəz/", meaning: "năm", definition: "An abbreviation for years.", example: "Candidates should have at least 2 yrs of secretarial experience.", exampleVi: "Các ứng viên nên có ít nhất 2 năm kinh nghiệm thư ký." },
+            { id: 91, unit: 16, word: "Exp. (experience)", pos: "ABBR", ipa: "/ɪkˈspɪə.ri.əns/", meaning: "kinh nghiệm", definition: "Knowledge or skills gained through doing something.", example: "Previous administrative exp. will be an advantage during selection.", exampleVi: "Kinh nghiệm hành chính trước đây sẽ là một lợi thế." },
+            { id: 92, unit: 16, word: "Attention to detail", pos: "N phrase", ipa: "/əˈten.ʃən tə ˈdiː.teɪl/", meaning: "sự chú ý đến từng chi tiết", definition: "The ability to notice and check small details carefully.", example: "Strong attention to detail ensures error-free document preparation.", exampleVi: "Sự chú ý tỉ mỉ đến từng chi tiết đảm bảo chuẩn bị tài liệu không lỗi." },
+            { id: 93, unit: 16, word: "Initiative", pos: "N", ipa: "/ɪˈnɪʃ.ə.tɪv/", meaning: "tính chủ động, sáng kiến", definition: "The ability to act independently without waiting for instructions.", example: "We value employees who show initiative and solve problems proactively.", exampleVi: "Chúng tôi đánh giá cao nhân viên thể hiện tính chủ động." },
+            { id: 94, unit: 16, word: "Beneficial", pos: "Adj", ipa: "/ˌben.ɪˈfɪʃ.əl/", meaning: "có lợi, có ích", definition: "Having a positive effect or providing an advantage.", example: "Attending professional workshops is beneficial for career growth.", exampleVi: "Tham gia các hội thảo chuyên nghiệp có lợi cho sự phát triển." },
+            { id: 95, unit: 16, word: "Cover letter", pos: "N phrase", ipa: "/ʌv.ə ˈlet.ər/" /* fallback ipa */, meaning: "thư xin việc, thư ứng tuyển", definition: "A letter sent with a CV to explain why an applicant is suitable.", example: "Always include a customized cover letter when applying for a job.", exampleVi: "Luôn đính kèm thư xin việc được cá nhân hóa khi ứng tuyển." }
+        ];
+
+        // ==========================================
+        // APP STATE & LOCALSTORAGE
+        // ==========================================
+        let userProgress = JSON.parse(localStorage.getItem('esp_progress')) || {}; 
+        // format: { id: 'known' | 'practice' }
+        let mistakeHistory = JSON.parse(localStorage.getItem('esp_mistakes')) || []; 
+        // format: [ id1, id2, ... ]
+
+        let currentFilteredList = [...vocabularyData];
+        let currentIndex = 0;
+        let isFlipped = false;
+
+        // Quiz States
+        let listeningQuizIndex = 0;
+        let listeningQuizQuestions = [];
+        let recognitionQuizIndex = 0;
+        let recognitionQuizQuestions = [];
+        let definitionQuizIndex = 0;
+        let definitionQuizQuestions = [];
+
+        // Speech Synthesis
+        let voices = [];
+        let britishVoices = [];
+        let speechRate = 0.9;
+
+        // ==========================================
+        // INITIALIZATION
+        // ==========================================
+        window.addEventListener('DOMContentLoaded', () => {
+            initSpeechSynthesis();
+            updateDashboard();
+            filterFlashcards();
+            setupTouchEvents();
+
+            document.getElementById('speedRange').addEventListener('input', (e) => {
+                speechRate = parseFloat(e.target.value);
+                document.getElementById('speedVal').textContent = speechRate.toFixed(2) + 'x';
+            });
+        });
+
+        function initSpeechSynthesis() {
+            if (!('speechSynthesis' in window)) {
+                document.getElementById('voiceSelect').innerHTML = '<option value="">Speech synthesis not supported</option>';
+                return;
+            }
+
+            function loadVoicesList() {
+                voices = window.speechSynthesis.getVoices();
+                britishVoices = voices.filter(v => 
+                    v.lang.toLowerCase().includes('gb') || 
+                    v.lang.toLowerCase().includes('uk') || 
+                    v.lang.toLowerCase().includes('en-gb')
+                );
+
+                const select = document.getElementById('voiceSelect');
+                select.innerHTML = '';
+
+                if (britishVoices.length === 0) {
+                    // Fallback to English voices if no exact en-GB found
+                    const enVoices = voices.filter(v => v.lang.startsWith('en'));
+                    if (enVoices.length === 0) {
+                        select.innerHTML = '<option value="">No English voices found</option>';
+                    } else {
+                        enVoices.forEach((v, idx) => {
+                            const opt = document.createElement('option');
+                            opt.value = idx;
+                            opt.textContent = `${v.name} (${v.lang}) - General EN`;
+                            select.appendChild(opt);
+                        });
+                        britishVoices = enVoices; // use as fallback pool
+                    }
+                } else {
+                    britishVoices.forEach((v, idx) => {
+                        const opt = document.createElement('option');
+                        opt.value = idx;
+                        opt.textContent = `${v.name} (${v.lang})`;
+                        select.appendChild(opt);
+                    });
+                }
+            }
+
+            loadVoicesList();
+            if (window.speechSynthesis.onvoiceschanged !== undefined) {
+                window.speechSynthesis.onvoiceschanged = loadVoicesList;
+            }
+        }
+
+        function speak(text) {
+            if (!('speechSynthesis' in window)) return;
+            window.speechSynthesis.cancel();
+            
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.rate = speechRate;
+            utterance.lang = 'en-GB';
+
+            const select = document.getElementById('voiceSelect');
+            const selectedIdx = select.value !== '' ? parseInt(select.value) : 0;
+            
+            if (britishVoices[selectedIdx]) {
+                utterance.voice = britishVoices[selectedIdx];
+            }
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function speakVocabulary() {
+            const currentItem = currentFilteredList[currentIndex];
+            if (currentItem) speak(currentItem.word);
+        }
+
+        function speakExample() {
+            const currentItem = currentFilteredList[currentIndex];
+            if (currentItem) speak(currentItem.example);
+        }
+
+        // ==========================================
+        // TAB SWITCHING
+        // ==========================================
+        function switchTab(tabId) {
+            document.querySelectorAll('.view-section').forEach(sec => sec.classList.add('hidden'));
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('bg-sky-600', 'text-white', 'shadow-sm');
+                tab.classList.add('text-slate-600', 'hover:bg-slate-200/60');
+            });
+
+            const activeView = document.getElementById(`view-${tabId}`);
+            const activeTab = document.getElementById(`nav-${tabId}`);
+
+            if (activeView) activeView.classList.remove('hidden');
+            if (activeTab) {
+                activeTab.classList.remove('text-slate-600', 'hover:bg-slate-200/60');
+                activeTab.classList.add('bg-sky-600', 'text-white', 'shadow-sm');
+            }
+
+            if (tabId === 'dashboard') {
+                updateDashboard();
+            } else if (tabId === 'flashcards') {
+                renderCurrentCard();
+            } else if (tabId === 'quiz-listening') {
+                startListeningQuiz();
+            } else if (tabId === 'quiz-recognition') {
+                startRecognitionQuiz();
+            } else if (tabId === 'quiz-definition') {
+                startDefinitionQuiz();
+            } else if (tabId === 'review-mistakes') {
+                renderMistakes();
+            }
+        }
+
+        // ==========================================
+        // DASHBOARD & STATS
+        // ==========================================
+        function updateDashboard() {
+            const total = vocabularyData.length;
+            let known = 0;
+            let practice = 0;
+
+            Object.values(userProgress).forEach(status => {
+                if (status === 'known') known++;
+                if (status === 'practice') practice++;
+            });
+
+            const unreviewed = total - (known + practice);
+            const progressPct = Math.round(((known) / total) * 100);
+
+            document.getElementById('stat-total').textContent = total;
+            document.getElementById('stat-known').textContent = known;
+            document.getElementById('stat-known-pct').textContent = Math.round((known / total) * 100) + '%';
+            document.getElementById('stat-practice').textContent = practice;
+            document.getElementById('stat-practice-pct').textContent = Math.round((practice / total) * 100) + '%';
+            document.getElementById('stat-unreviewed').textContent = unreviewed;
+
+            document.getElementById('overall-progress-text').textContent = progressPct + '% Completed';
+            document.getElementById('overall-progress-bar').style.width = progressPct + '%';
+
+            document.getElementById('mistakeCountBadge').textContent = mistakeHistory.length;
+
+            // Render Unit breakdown
+            const unitGrid = document.getElementById('unit-breakdown-grid');
+            unitGrid.innerHTML = '';
+
+            for (let u = 9; u <= 16; u++) {
+                const unitItems = vocabularyData.filter(v => v.unit === u);
+                let uKnown = unitItems.filter(v => userProgress[v.id] === 'known').length;
+                let uPct = Math.round((uKnown / unitItems.length) * 100);
+
+                const unitNames = {
+                    9: "Business Letters",
+                    10: "Graphs and Charts",
+                    11: "Writing Invitations",
+                    12: "Business Communication",
+                    13: "Meetings",
+                    14: "Conference Equipment",
+                    15: "Company Activities",
+                    16: "Administrative Assistant"
+                };
+
+                const card = document.createElement('div');
+                card.className = 'bg-white p-4 rounded-2xl border border-slate-100 shadow-sm flex flex-col justify-between space-y-3';
+                card.innerHTML = `
+                    <div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-bold text-sky-600 bg-sky-50 px-2.5 py-0.5 rounded">Unit ${u}</span>
+                            <span class="text-xs font-semibold text-slate-400">${uKnown}/${unitItems.length} learned</span>
+                        </div>
+                        <h4 class="font-bold text-slate-800 mt-2 text-sm line-clamp-1">${unitNames[u]}</h4>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="flex justify-between text-xs font-medium text-slate-500">
+                            <span>Progress</span>
+                            <span>${uPct}%</span>
+                        </div>
+                        <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                            <div class="bg-sky-500 h-full rounded-full transition-all duration-300" style="width: ${uPct}%"></div>
+                        </div>
+                    </div>
+                    <button onclick="jumpToUnit(${u})" class="w-full mt-2 py-1.5 bg-slate-50 hover:bg-sky-50 text-sky-700 font-semibold rounded-xl text-xs transition border border-slate-100">
+                        Practice Unit →
+                    </button>
+                `;
+                unitGrid.appendChild(card);
+            }
+        }
+
+        function jumpToUnit(unitNum) {
+            document.getElementById('fc-unit-select').value = unitNum;
+            document.getElementById('fc-status-select').value = 'all';
+            document.getElementById('fc-search').value = '';
+            switchTab('flashcards');
+            filterFlashcards();
+        }
+
+        // ==========================================
+        // FLASHCARDS LOGIC
+        // ==========================================
+        function filterFlashcards() {
+            const unitVal = document.getElementById('fc-unit-select').value;
+            const statusVal = document.getElementById('fc-status-select').value;
+            const searchVal = document.getElementById('fc-search').value.toLowerCase().trim();
+
+            currentFilteredList = vocabularyData.filter(item => {
+                const matchUnit = unitVal === 'all' || item.unit.toString() === unitVal;
+                const status = userProgress[item.id] || 'unreviewed';
+                const matchStatus = statusVal === 'all' || status === statusVal;
+                const matchSearch = searchVal === '' || 
+                    item.word.toLowerCase().includes(searchVal) || 
+                    item.meaning.toLowerCase().includes(searchVal) ||
+                    item.definition.toLowerCase().includes(searchVal);
+
+                return matchUnit && matchStatus && matchSearch;
+            });
+
+            currentIndex = 0;
+            isFlipped = false;
+            renderCurrentCard();
+        }
+
+        function renderCurrentCard() {
+            const cardInner = document.getElementById('flashcard-inner');
+            if (isFlipped) {
+                isFlipped = false;
+                cardInner.classList.remove('rotate-y-180');
+            }
+
+            const counterEl = document.getElementById('fc-counter');
+            const badgeEl = document.getElementById('fc-unit-badge');
+
+            if (currentFilteredList.length === 0) {
+                counterEl.textContent = '0 of 0';
+                badgeEl.textContent = 'No items';
+                document.getElementById('fc-front-word').textContent = 'No vocabulary found';
+                document.getElementById('fc-front-ipa').textContent = 'Try changing filters';
+                document.getElementById('fc-front-pos').textContent = '-';
+                return;
+            }
+
+            if (currentIndex >= currentFilteredList.length) {
+                currentIndex = 0;
+            }
+
+            const item = currentFilteredList[currentIndex];
+
+            counterEl.textContent = `Card ${currentIndex + 1} of ${currentFilteredList.length}`;
+            badgeEl.textContent = `Unit ${item.unit}`;
+
+            // Front
+            document.getElementById('fc-front-pos').textContent = item.pos;
+            document.getElementById('fc-front-word').textContent = item.word;
+            document.getElementById('fc-front-ipa').textContent = item.ipa;
+
+            // Back
+            document.getElementById('fc-back-pos').textContent = `Unit ${item.unit} • ${item.pos}`;
+            document.getElementById('fc-back-meaning').textContent = item.meaning;
+            document.getElementById('fc-back-definition').textContent = item.definition;
+            document.getElementById('fc-back-example').textContent = `"${item.example}"`;
+            document.getElementById('fc-back-example-vi').textContent = item.exampleVi;
+
+            // Update status button highlights
+            const currentStatus = userProgress[item.id];
+            const btnKnown = document.getElementById('btn-known');
+            const btnPractice = document.getElementById('btn-practice');
+
+            btnKnown.className = currentStatus === 'known' ? 
+                'flex-1 sm:flex-initial px-5 py-3 bg-emerald-600 text-white border border-emerald-600 font-bold rounded-2xl transition shadow-md text-sm flex items-center justify-center gap-1.5' :
+                'flex-1 sm:flex-initial px-5 py-3 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 font-bold rounded-2xl transition shadow-sm text-sm flex items-center justify-center gap-1.5';
+
+            btnPractice.className = currentStatus === 'practice' ?
+                'flex-1 sm:flex-initial px-5 py-3 bg-amber-600 text-white border border-amber-600 font-bold rounded-2xl transition shadow-md text-sm flex items-center justify-center gap-1.5' :
+                'flex-1 sm:flex-initial px-5 py-3 bg-amber-50 hover:bg-amber-100 text-amber-700 border border-amber-200 font-bold rounded-2xl transition shadow-sm text-sm flex items-center justify-center gap-1.5';
+        }
+
+        function flipCard() {
+            if (currentFilteredList.length === 0) return;
+            const cardInner = document.getElementById('flashcard-inner');
+            isFlipped = !isFlipped;
+            if (isFlipped) {
+                cardInner.classList.add('rotate-y-180');
+            } else {
+                cardInner.classList.remove('rotate-y-180');
+            }
+        }
+
+        function nextCard() {
+            if (currentFilteredList.length === 0) return;
+            currentIndex = (currentIndex + 1) % currentFilteredList.length;
+            renderCurrentCard();
+        }
+
+        function prevCard() {
+            if (currentFilteredList.length === 0) return;
+            currentIndex = (currentIndex - 1 + currentFilteredList.length) % currentFilteredList.length;
+            renderCurrentCard();
+        }
+
+        function markStatus(status) {
+            if (currentFilteredList.length === 0) return;
+            const item = currentFilteredList[currentIndex];
+            userProgress[item.id] = status;
+            localStorage.setItem('esp_progress', JSON.stringify(userProgress));
+            renderCurrentCard();
+            updateDashboard();
+        }
+
+        function shuffleFlashcards() {
+            for (let i = currentFilteredList.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [currentFilteredList[i], currentFilteredList[j]] = [currentFilteredList[j], currentFilteredList[i]];
+            }
+            currentIndex = 0;
+            renderCurrentCard();
+        }
+
+        function restartUnit() {
+            currentIndex = 0;
+            renderCurrentCard();
+        }
+
+        // Swipe support on mobile
+        function setupTouchEvents() {
+            const card = document.getElementById('flashcard');
+            let startX = 0;
+            card.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+            }, {passive: true});
+
+            card.addEventListener('touchend', (e) => {
+                let endX = e.changedTouches[0].clientX;
+                let diff = endX - startX;
+                if (Math.abs(diff) > 50) {
+                    if (diff > 0) {
+                        prevCard();
+                    } else {
+                        nextCard();
+                    }
+                }
+            }, {passive: true});
+        }
+
+        // ==========================================
+        // QUIZ 1: LISTENING PRACTICE
+        // ==========================================
+        function startListeningQuiz() {
+            listeningQuizIndex = 0;
+            listeningQuizQuestions = [...vocabularyData].sort(() => 0.5 - Math.random()).slice(0, 10);
+            loadListeningQuizQuestion();
+        }
+
+        function loadListeningQuizQuestion() {
+            if (listeningQuizIndex >= listeningQuizQuestions.length) {
+                renderQuizComplete('view-quiz-listening', 'Listening Quiz', startListeningQuiz);
+                return;
+            }
+
+            const current = listeningQuizQuestions[listeningQuizIndex];
+            document.getElementById('lq-progress').textContent = `Question ${listeningQuizIndex + 1} / 10`;
+            document.getElementById('lq-feedback').classList.add('hidden');
+            document.getElementById('lq-next-btn').classList.add('hidden');
+
+            // Generate 4 choices
+            let choices = [current];
+            while (choices.length < 4) {
+                let randomItem = vocabularyData[Math.floor(Math.random() * vocabularyData.length)];
+                if (!choices.some(c => c.id === randomItem.id)) {
+                    choices.push(randomItem);
+                }
+            }
+            choices.sort(() => 0.5 - Math.random());
+
+            const optionsContainer = document.getElementById('lq-options');
+            optionsContainer.innerHTML = '';
+            choices.forEach(choice => {
+                const btn = document.createElement('button');
+                btn.className = 'p-4 bg-slate-50 hover:bg-sky-50 border border-slate-200 hover:border-sky-300 rounded-2xl text-left transition font-semibold text-slate-800 text-sm flex justify-between items-center';
+                btn.innerHTML = `<span>${choice.word} <span class="text-xs font-normal text-slate-500 block">(${choice.meaning})</span></span> <span class="text-xs text-sky-600 bg-sky-100 px-2 py-1 rounded">Unit ${choice.unit}</span>`;
+                btn.onclick = () => checkListeningQuizAnswer(choice.id, current.id, btn);
+                optionsContainer.appendChild(btn);
+            });
+
+            // Auto play audio
+            speak(current.word);
+        }
+
+        function playListeningQuizAudio() {
+            const current = listeningQuizQuestions[listeningQuizIndex];
+            if (current) speak(current.word);
+        }
+
+        function checkListeningQuizAnswer(selectedId, correctId, btnElement) {
+            const buttons = document.querySelectorAll('#lq-options button');
+            buttons.forEach(b => b.disabled = true);
+
+            const feedback = document.getElementById('lq-feedback');
+            feedback.classList.remove('hidden');
+
+            if (selectedId === correctId) {
+                btnElement.className = 'p-4 bg-emerald-50 border border-emerald-300 rounded-2xl text-left font-bold text-emerald-800 text-sm flex justify-between items-center';
+                feedback.className = 'p-4 rounded-2xl text-center font-semibold text-sm bg-emerald-50 text-emerald-800 border border-emerald-200';
+                feedback.textContent = '🎉 Correct! Great listening skill!';
+            } else {
+                btnElement.className = 'p-4 bg-rose-50 border border-rose-300 rounded-2xl text-left font-bold text-rose-800 text-sm flex justify-between items-center';
+                feedback.className = 'p-4 rounded-2xl text-center font-semibold text-sm bg-rose-50 text-rose-800 border border-rose-200';
+                feedback.textContent = '❌ Incorrect. The correct answer was highlighted.';
+                
+                // Record mistake
+                const wrongItem = listeningQuizQuestions[listeningQuizIndex];
+                if (!mistakeHistory.includes(wrongItem.id)) {
+                    mistakeHistory.push(wrongItem.id);
+                    localStorage.setItem('esp_mistakes', JSON.stringify(mistakeHistory));
+                    document.getElementById('mistakeCountBadge').textContent = mistakeHistory.length;
+                }
+
+                buttons.forEach(b => {
+                    if (b.textContent.includes(vocabularyData.find(v => v.id === correctId).word)) {
+                        b.className = 'p-4 bg-emerald-50 border border-emerald-300 rounded-2xl text-left font-bold text-emerald-800 text-sm flex justify-between items-center';
+                    }
+                });
+            }
+
+            document.getElementById('lq-next-btn').classList.remove('hidden');
+        }
+
+        function nextListeningQuizQuestion() {
+            listeningQuizIndex++;
+            loadListeningQuizQuestion();
+        }
+
+        // ==========================================
+        // QUIZ 2: VOCABULARY RECOGNITION
+        // ==========================================
+        function startRecognitionQuiz() {
+            recognitionQuizIndex = 0;
+            recognitionQuizQuestions = [...vocabularyData].sort(() => 0.5 - Math.random()).slice(0, 10);
+            loadRecognitionQuizQuestion();
+        }
+
+        function loadRecognitionQuizQuestion() {
+            if (recognitionQuizIndex >= recognitionQuizQuestions.length) {
+                renderQuizComplete('view-quiz-recognition', 'Meaning Recognition Quiz', startRecognitionQuiz);
+                return;
+            }
+
+            const current = recognitionQuizQuestions[recognitionQuizIndex];
+            document.getElementById('rq-progress').textContent = `Question ${recognitionQuizIndex + 1} / 10`;
+            document.getElementById('rq-feedback').classList.add('hidden');
+            document.getElementById('rq-next-btn').classList.add('hidden');
+
+            document.getElementById('rq-pos').textContent = current.pos;
+            document.getElementById('rq-word').textContent = current.word;
+            document.getElementById('rq-ipa').textContent = current.ipa;
+
+            let choices = [current];
+            while (choices.length < 4) {
+                let randomItem = vocabularyData[Math.floor(Math.random() * vocabularyData.length)];
+                if (!choices.some(c => c.id === randomItem.id)) {
+                    choices.push(randomItem);
+                }
+            }
+            choices.sort(() => 0.5 - Math.random());
+
+            const optionsContainer = document.getElementById('rq-options');
+            optionsContainer.innerHTML = '';
+            choices.forEach(choice => {
+                const btn = document.createElement('button');
+                btn.className = 'p-4 bg-slate-50 hover:bg-sky-50 border border-slate-200 hover:border-sky-300 rounded-2xl text-left transition font-semibold text-slate-800 text-sm flex justify-between items-center';
+                btn.innerHTML = `<span>${choice.meaning} <span class="text-xs font-normal text-slate-500 block">(${choice.word})</span></span>`;
+                btn.onclick = () => checkRecognitionQuizAnswer(choice.id, current.id, btn);
+                optionsContainer.appendChild(btn);
+            });
+        }
+
+        function checkRecognitionQuizAnswer(selectedId, correctId, btnElement) {
+            const buttons = document.querySelectorAll('#rq-options button');
+            buttons.forEach(b => b.disabled = true);
+
+            const feedback = document.getElementById('rq-feedback');
+            feedback.classList.remove('hidden');
+
+            if (selectedId === correctId) {
+                btnElement.className = 'p-4 bg-emerald-50 border border-emerald-300 rounded-2xl text-left font-bold text-emerald-800 text-sm flex justify-between items-center';
+                feedback.className = 'p-4 rounded-2xl text-center font-semibold text-sm bg-emerald-50 text-emerald-800 border border-emerald-200';
+                feedback.textContent = '🎉 Excellent! Correct meaning.';
+            } else {
+                btnElement.className = 'p-4 bg-rose-50 border border-rose-300 rounded-2xl text-left font-bold text-rose-800 text-sm flex justify-between items-center';
+                feedback.className = 'p-4 rounded-2xl text-center font-semibold text-sm bg-rose-50 text-rose-800 border border-rose-200';
+                feedback.textContent = '❌ Incorrect. Correct answer highlighted.';
+
+                const wrongItem = recognitionQuizQuestions[recognitionQuizIndex];
+                if (!mistakeHistory.includes(wrongItem.id)) {
+                    mistakeHistory.push(wrongItem.id);
+                    localStorage.setItem('esp_mistakes', JSON.stringify(mistakeHistory));
+                    document.getElementById('mistakeCountBadge').textContent = mistakeHistory.length;
+                }
+
+                buttons.forEach(b => {
+                    if (b.textContent.includes(vocabularyData.find(v => v.id === correctId).meaning)) {
+                        b.className = 'p-4 bg-emerald-50 border border-emerald-300 rounded-2xl text-left font-bold text-emerald-800 text-sm flex justify-between items-center';
+                    }
+                });
+            }
+
+            document.getElementById('rq-next-btn').classList.remove('hidden');
+        }
+
+        function nextRecognitionQuizQuestion() {
+            recognitionQuizIndex++;
+            loadRecognitionQuizQuestion();
+        }
+
+        // ==========================================
+        // QUIZ 3: DEFINITION MATCHING
+        // ==========================================
+        function startDefinitionQuiz() {
+            definitionQuizIndex = 0;
+            definitionQuizQuestions = [...vocabularyData].sort(() => 0.5 - Math.random()).slice(0, 10);
+            loadDefinitionQuizQuestion();
+        }
+
+        function loadDefinitionQuizQuestion() {
+            if (definitionQuizIndex >= definitionQuizQuestions.length) {
+                renderQuizComplete('view-quiz-definition', 'Definition Matching Quiz', startDefinitionQuiz);
+                return;
+            }
+
+            const current = definitionQuizQuestions[definitionQuizIndex];
+            document.getElementById('dq-progress').textContent = `Question ${definitionQuizIndex + 1} / 10`;
+            document.getElementById('dq-feedback').classList.add('hidden');
+            document.getElementById('dq-next-btn').classList.add('hidden');
+
+            document.getElementById('dq-definition').textContent = current.definition;
+
+            let choices = [current];
+            while (choices.length < 4) {
+                let randomItem = vocabularyData[Math.floor(Math.random() * vocabularyData.length)];
+                if (!choices.some(c => c.id === randomItem.id)) {
+                    choices.push(randomItem);
+                }
+            }
+            choices.sort(() => 0.5 - Math.random());
+
+            const optionsContainer = document.getElementById('dq-options');
+            optionsContainer.innerHTML = '';
+            choices.forEach(choice => {
+                const btn = document.createElement('button');
+                btn.className = 'p-4 bg-slate-50 hover:bg-sky-50 border border-slate-200 hover:border-sky-300 rounded-2xl text-left transition font-semibold text-slate-800 text-sm flex justify-between items-center';
+                btn.innerHTML = `<span>${choice.word} <span class="text-xs font-normal text-slate-500 block">${choice.meaning}</span></span> <span class="text-xs text-sky-600 bg-sky-100 px-2 py-1 rounded">${choice.pos}</span>`;
+                btn.onclick = () => checkDefinitionQuizAnswer(choice.id, current.id, btn);
+                optionsContainer.appendChild(btn);
+            });
+        }
+
+        function checkDefinitionQuizAnswer(selectedId, correctId, btnElement) {
+            const buttons = document.querySelectorAll('#dq-options button');
+            buttons.forEach(b => b.disabled = true);
+
+            const feedback = document.getElementById('dq-feedback');
+            feedback.classList.remove('hidden');
+
+            if (selectedId === correctId) {
+                btnElement.className = 'p-4 bg-emerald-50 border border-emerald-300 rounded-2xl text-left font-bold text-emerald-800 text-sm flex justify-between items-center';
+                feedback.className = 'p-4 rounded-2xl text-center font-semibold text-sm bg-emerald-50 text-emerald-800 border border-emerald-200';
+                feedback.textContent = '🎉 Spot on! Definition matched correctly.';
+            } else {
+                btnElement.className = 'p-4 bg-rose-50 border border-rose-300 rounded-2xl text-left font-bold text-rose-800 text-sm flex justify-between items-center';
+                feedback.className = 'p-4 rounded-2xl text-center font-semibold text-sm bg-rose-50 text-rose-800 border border-rose-200';
+                feedback.textContent = '❌ Incorrect. Correct answer highlighted.';
+
+                const wrongItem = definitionQuizQuestions[definitionQuizIndex];
+                if (!mistakeHistory.includes(wrongItem.id)) {
+                    mistakeHistory.push(wrongItem.id);
+                    localStorage.setItem('esp_mistakes', JSON.stringify(mistakeHistory));
+                    document.getElementById('mistakeCountBadge').textContent = mistakeHistory.length;
+                }
+
+                buttons.forEach(b => {
+                    if (b.textContent.includes(vocabularyData.find(v => v.id === correctId).word)) {
+                        b.className = 'p-4 bg-emerald-50 border border-emerald-300 rounded-2xl text-left font-bold text-emerald-800 text-sm flex justify-between items-center';
+                    }
+                });
+            }
+
+            document.getElementById('dq-next-btn').classList.remove('hidden');
+        }
+
+        function nextDefinitionQuizQuestion() {
+            definitionQuizIndex++;
+            loadDefinitionQuizQuestion();
+        }
+
+        function renderQuizComplete(viewId, quizTitle, restartCallback) {
+            const section = document.getElementById(viewId);
+            section.innerHTML = `
+                <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm text-center space-y-6 max-w-lg mx-auto">
+                    <div class="w-16 h-16 bg-sky-100 text-sky-600 rounded-full flex items-center justify-center text-3xl mx-auto shadow-inner">
+                        🏆
+                    </div>
+                    <div class="space-y-2">
+                        <h2 class="text-2xl font-bold text-slate-900">${quizTitle} Completed!</h2>
+                        <p class="text-sm text-slate-500">You have successfully completed all 10 questions for this session.</p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-3 justify-center pt-2">
+                        <button onclick="switchTab('dashboard')" class="px-6 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-2xl transition text-sm">
+                            Back to Dashboard
+                        </button>
+                        <button onclick="(${restartCallback.name})()" class="px-6 py-3 bg-sky-600 hover:bg-sky-700 text-white font-bold rounded-2xl shadow transition text-sm">
+                            Try Again 🔄
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // ==========================================
+        // MISTAKE REVIEW CENTER
+        // ==========================================
+        function renderMistakes() {
+            const container = document.getElementById('mistakes-container');
+            container.innerHTML = '';
+
+            if (mistakeHistory.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full bg-white p-8 rounded-3xl border border-slate-100 text-center space-y-3">
+                        <p class="text-4xl">🌟</p>
+                        <h3 class="font-bold text-lg text-slate-800">No mistakes recorded yet!</h3>
+                        <p class="text-sm text-slate-500">Take quizzes to test your knowledge. Incorrect answers will appear here for focused review.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            mistakeHistory.forEach(id => {
+                const item = vocabularyData.find(v => v.id === id);
+                if (!item) return;
+
+                const card = document.createElement('div');
+                card.className = 'bg-white p-5 rounded-2xl border border-slate-100 shadow-sm flex flex-col justify-between space-y-3';
+                card.innerHTML = `
+                    <div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-bold text-sky-600 bg-sky-50 px-2.5 py-1 rounded">Unit ${item.unit} • ${item.pos}</span>
+                            <button onclick="speak('${item.word}')" class="text-sky-600 hover:text-sky-700 text-sm font-semibold">🔊 Pronounce</button>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900 mt-2">${item.word} <span class="text-sm font-mono text-sky-600 font-normal">${item.ipa}</span></h3>
+                        <p class="text-sm font-semibold text-amber-700 mt-1">${item.meaning}</p>
+                        <p class="text-xs text-slate-500 mt-2">${item.definition}</p>
+                    </div>
+                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-100 text-xs italic text-slate-600">
+                        "${item.example}"
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function clearMistakes() {
+            mistakeHistory = [];
+            localStorage.removeItem('esp_mistakes');
+            document.getElementById('mistakeCountBadge').textContent = '0';
+            renderMistakes();
+        }
+    </script>
+</body>
+</html>
